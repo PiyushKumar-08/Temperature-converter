@@ -1,0 +1,39 @@
+#Temperature converter
+
+import tkinter as tk
+
+def convert_temperature():
+    try:
+        temperature = float(entry.get())
+
+        if var.get() == 1:  # Fahrenheit to Celsius
+            result_label.config(text=f"{temperature:.2f} °F is equal to {(temperature - 32) * 5 / 9:.2f} °C", fg="blue")
+        elif var.get() == 2:  # Celsius to Fahrenheit
+            result_label.config(text=f"{temperature:.2f} °C is equal to {(temperature * 9 / 5) + 32:.2f} °F", fg="green")
+    except ValueError:
+        result_label.config(text="Invalid input. Please enter a valid temperature.", fg="red")
+
+root = tk.Tk()
+root.title("Temperature Converter")
+root.geometry("400x250")
+root.config(bg="lightgray")
+
+label = tk.Label(root, text="Enter temperature and select conversion:", font=("Arial", 13,"bold"), bg="lightgray")
+label.pack(pady=10)
+
+entry = tk.Entry(root, font=("Arial", 14), width=10, justify='center')
+entry.pack()
+
+var = tk.IntVar()
+fahrenheit_radio = tk.Radiobutton(root, text="Fahrenheit to Celsius", variable=var, value=1, font=("Arial", 10), bg="lightgray", activebackground="blue")
+fahrenheit_radio.pack()
+celsius_radio = tk.Radiobutton(root, text="Celsius to Fahrenheit", variable=var, value=2, font=("Arial", 10), bg="lightgray", activebackground="green")
+celsius_radio.pack()
+
+convert_button = tk.Button(root, text="Convert", command=convert_temperature, font=("Arial", 12, "bold"), bg="orange", fg="white")
+convert_button.pack(pady=10)
+
+result_label = tk.Label(root, text="", font=("Arial", 12, "bold"), bg="lightgray")
+result_label.pack()
+
+root.mainloop()
